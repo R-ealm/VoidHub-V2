@@ -1,0 +1,112 @@
+--- ESP Functions
+local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+--- Silent Aim
+--[[
+ESP SETTINGS
+-----
+getgenv().SelectedPart = "Head/Torso"
+getgenv().VisibiltyCheck = false/true
+getgenv().TargetESP = true/false
+getgenv().FOV = String Value
+getgenv().CircleVisibility = true/false
+getgenv().Distance = String Value
+
+--- R6 Rig Type
+local rigTypeR6 = {
+	["Head"] = true,
+	["Torso"] = true,
+	["LowerTorso"] = true,
+	["Left Arm"] = true,
+	["Right Arm"] = true,
+	["Left Leg"] = true,
+	["Right Leg"] = true
+
+--- R15 Rig Type
+local rigTypeR15 = {
+    ["Head"] = true,
+    ["UpperTorso"] = true,
+    ["LowerTorso"] = true,
+    ["LeftUpperArm"] = true,
+    ["RightUpperArm"] = true,
+    ["RightLowerArm"] = true,
+    ["LeftLowerArm"] = true,
+    ["LeftHand"] = true,
+    ["RightHand"] = true,
+    ["LeftUpperLeg"] = true,
+    ["RightUpperLeg"] = true,
+    ["LeftLowerLeg"] = true,
+    ["RightLowerLeg"] = true,
+    ["LeftFoot"] = true,
+    ["RightFoot"] = true
+
+]]
+----------------------------------------------------------------
+
+
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
+local MainUI = UILibrary.Load("Void Hub V2")
+--Pages
+local Main = MainUI.AddPage("Main", false)
+local Visuals = MainUI.AddPage("Visuals", false)
+
+local VisualsLabel = Visuals.AddLabel("ESP")
+
+local Esp = Visuals.AddToggle("Esp", false, function(v)
+if v == true then
+    ESP:Toggle(true)
+else
+    ESP:Toggle(false)
+  end
+end)
+
+local LineEsp = Visuals.AddToggle("Line Esp", false, function(v)
+if v == true then
+    ESP.Tracers = true
+    ESP:Toggle(true)
+else
+    ESP.Tracers = false
+    ESP:Toggle(false)
+    end
+end)
+
+local SilentAimLabel = Main.AddLabel("Silent Aim")
+
+    local SilentAim = Main.AddToggle("Silent Aim", false, function(v)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/R-ealm/Libs/main/Silent%20Aim%20Lib", true))()
+        if v == true then
+        --getgenv().SelectedPart = "UpperTorso"
+        --getgenv().VisibiltyCheck = true
+            getgenv().TargetESP = true
+        --getgenv().FOV = 100
+        --getgenv().CircleVisibility = true
+        --getgenv().Distance = 500
+        else
+            getgenv().SelectedPart = ""
+            getgenv().VisibiltyCheck = false
+            getgenv().TargetESP = false
+         --getgenv().FOV = 100
+         --getgenv().CircleVisibility = false
+         --getgenv().Distance = 500
+        end
+    end)
+
+    local VisibleCricle = Main.AddToggle("Visible Cricle", false, function(VisibiltyCheckValue)
+        getgenv().CircleVisibility = VisibiltyCheckValue
+    end)
+
+    
+local AimPartDropDown = Main.AddDropdown("Aim Part", {
+    "Head",
+    "Torso"
+    }, function(APValue)
+    getgenv().SelectedPart = APValue
+    end)
+
+
+    local FOVSize = Visuals.AddSlider("Fov Size", {Min = 10, Max = 500, Def = 100}, function(SliderValueFOV)
+        getgenv().FOV = SliderValueFOV
+    end)
+
+    local FOVDistance = Main.AddSlider("FOVDistance", {Min = 50, Max = 500, Def = 250}, function(SliderValueDistance)
+        getgenv().Distance = SliderValueDistance
+    end)
