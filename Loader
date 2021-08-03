@@ -6,4 +6,8 @@ elseif game.PlaceId == 621129760 then
     
     elseif game.PlaceId == 3956818381 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/R-ealm/VoidHub-V2/main/Games-Api/Ninja%20Legends"))();
+    elseif game.PlaceId == 648362523 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/R-ealm/VoidHub-V2/main/Games-Api/Breaking%20Point"))();
+    else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/R-ealm/VoidHub-V2/main/Games-Api/UnsupportedGUI"))();
 end
